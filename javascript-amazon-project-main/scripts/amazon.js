@@ -71,6 +71,17 @@ document.querySelectorAll('.js-add-to-cart')
             quantity: 1
         });
       }
+
+      // to findout quantity in cart we will looop through cart using for each
+      let cartQuantity = 0;
+      cart.forEach((item) => {
+        cartQuantity += item.quantity;
+      });
+      // to put on page using dom
+      document.querySelector('.js-cart-quantity')
+      .innerHTML = cartQuantity;
+    
+      
   console.log(cart)
   });
 });
