@@ -1,4 +1,4 @@
-import {cart} from "../data/cart.js";
+import {cart, addtoCart, updateCartQuantity} from "../data/cart.js";
 import { products } from "../data/products.js";
 
 let productHTML = '';
@@ -54,37 +54,17 @@ products.forEach((product) => {
 
 });
 document.querySelector(".js-products-grid").innerHTML = productHTML;
+
+
 document.querySelectorAll('.js-add-to-cart')
 .forEach((button) => {
   button.addEventListener('click', () => {
     const productId = button.dataset.productId;
-    let matchingItem;
-    cart.forEach((item) => {
-      if (productId === item.productId){
-        matchingItem = item;
-      }
-    });
-    const quantitySelector = 
-    document.querySelector(`.js-quantity-selector-${productId}`);
-    const quantity = Number(quantitySelector.value);
-     if(matchingItem){
-        matchingItem.quantity += 1;
-      }
-      else{
-          cart.push({
-           productId,
-            quantity
-        });
-      }
-
-      // to findout quantity in cart we will looop through cart using for each
-      let cartQuantity = 0;
-      cart.forEach((item) => {
-        cartQuantity += item.quantity;
-      });
-      // to put on page using dom
-      document.querySelector('.js-cart-quantity')
-      .innerHTML = cartQuantity;
+      //call function addtocart()
+      addtoCart(productId);
+      // TO update cart call updatecartquanity()
+       updateCartQuantity();
+      
     // code for displaying Added msg when we click on add to cart button
      const addedMsg = document.querySelector(`.js-added-cart-msg-${productId}`);
     const addedMsgTimeout = {};
