@@ -1,3 +1,4 @@
+import {cart} from "../data/cart.js";
 
 let productHTML = '';
 products.forEach((product) => {
@@ -15,7 +16,7 @@ products.forEach((product) => {
             <img class="product-rating-stars"
               src="images/ratings/rating-${product.rating.stars * 10}.png">
             <div class="product-rating-count link-primary">
-              ${product.rating.counts}
+              ${product.rating.count}
             </div>
           </div>
 
@@ -40,7 +41,7 @@ products.forEach((product) => {
 
           <div class="product-spacer"></div>
 
-          <div class="added-to-cart">
+          <div class="added-to-cart js-added-cart-msg-${product.id}">
             <img src="images/icons/checkmark.png">
             Added
           </div>
@@ -83,7 +84,18 @@ document.querySelectorAll('.js-add-to-cart')
       // to put on page using dom
       document.querySelector('.js-cart-quantity')
       .innerHTML = cartQuantity;
-    
+    // code for displaying Added msg when we click on add to cart button
+     const addedMsg = document.querySelector(`.js-added-cart-msg-${productId}`);
+    const addedMsgTimeout = {};
+    const preiousTimeout = addedMsgTimeout[productId];
+    if (preiousTimeout) {
+      clearTimeout(preiousTimeout);
+    }
+      addedMsg.classList.add('js-added-msg-visible');
+      const timeoutId = setTimeout(() => {
+        addedMsg.classList.remove('js-added-msg-visible');
+      },2000);
+
       
   
   });

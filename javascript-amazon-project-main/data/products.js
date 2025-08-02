@@ -656,5 +656,21 @@ const products = [
       "apparel",
       "mens"
     ]
+  },
+  {
+    id: "id1",
+   image: "images/products/backpack.jpg",
+   name: "smart bag for man - Black color",
+   rating:{
+    stars: 4,
+    count: 3000
+   },
+   priceCents: 4500,
+   keywords: [
+    "black color",
+    "blue color",
+    "Red color",
+    "Gray color"
+   ]
   }
 ];
