@@ -39,6 +39,14 @@ export function updateCartQuantity(){
       document.querySelector('.js-cart-quantity')
       .innerHTML = cartQuantity;
 }
+export function updateCartCheckout() {
+    let cartQuantity = 0;
+      cart.forEach((cartItem) => {
+        cartQuantity += cartItem.quantity;
+    });
+      document.querySelector('.js-checkout-cart-quantity')
+      .innerHTML = `${cartQuantity} items`;
+  }
 export function removeItemFromCart(productId) {
   const newCart = [];
   cart.forEach((cartItem) => {
