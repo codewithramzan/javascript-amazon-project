@@ -102,4 +102,5 @@ document.querySelectorAll('.js-delete-cart-link')
   });
 });
   updateCartCheckout();
+  
    
