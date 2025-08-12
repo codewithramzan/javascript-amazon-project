@@ -2,6 +2,7 @@ import {cart, removeItemFromCart, updateCartCheckout, updateQuantity, updateDeli
 import {products,getProduct} from '../../data/products.js';
 import { formatCurrancy } from '../utils/money.js';
 import { deliveryOptions, getDeliveryOption } from '../../data/deliveryOptions.js';
+import { renderPaymentSummary } from './payment-summary.js';
 
 export function renderOrderSummary() {
 let cartProductHTML = '';
@@ -110,7 +111,9 @@ function deliveryOptionHTML(matchingProduct, cartItem) {
         removeItemFromCart(productId);
         const container = document.querySelector(`.js-cart-container-${productId}`);
         container.remove();
+        renderPaymentSummary();
         updateCartCheckout();
+        
     });
     });
   updateCartCheckout();
@@ -137,7 +140,7 @@ function deliveryOptionHTML(matchingProduct, cartItem) {
       if (Number(quantityInput.value) >= 0 && Number(quantityInput.value) < 1000) {
         updateQuantity(productId, newQuantity);
       }
-  
+      renderPaymentSummary();
     });
   });
 
@@ -147,6 +150,7 @@ function deliveryOptionHTML(matchingProduct, cartItem) {
     const {productId, deliveryOptionId} = element.dataset;
         updateDeliveryOption(productId, deliveryOptionId);
         renderOrderSummary();
+        renderPaymentSummary();
     });
     });
 }

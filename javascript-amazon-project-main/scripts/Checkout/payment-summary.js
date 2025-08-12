@@ -26,7 +26,7 @@ import { getDeliveryOption } from "../../data/deliveryOptions.js";
         </div>
         
         <div class="payment-summary-row">
-        <div>Items (3):</div>
+        <div">Items (3):</div>
         <div class="payment-summary-money">
         $${formatCurrancy(productPriceCents)}
         </div>
