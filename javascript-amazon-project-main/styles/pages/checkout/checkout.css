@@ -178,7 +178,10 @@
   font-size: 15px;
   margin-bottom: 9px;
 }
-
+.payment-summary-item {
+  text-align: start;
+  width: 250px;
+}
 .payment-summary-money {
   text-align: right;
 }
