@@ -1,7 +1,7 @@
 import {cart, removeItemFromCart, updateCartCheckout, updateQuantity, updateDeliveryOption} from '../../data/cart.js';
 import {products,getProduct} from '../../data/products.js';
 import { formatCurrancy } from '../utils/money.js';
-import { deliveryOptions, getDeliveryOption } from '../../data/deliveryOptions.js';
+import { deliveryOptions, getDeliveryOption, calculateDeliveryDate } from '../../data/deliveryOptions.js';
 import { renderPaymentSummary } from './payment-summary.js';
 import { renderCheckoutHeader } from './checkoutHeader.js';
 
@@ -13,13 +13,7 @@ cart.forEach((cartItem) => {
     
   const deliveryOptionId = cartItem.deliveryOptionId;
   const deliveryOption = getDeliveryOption(deliveryOptionId);
- 
-    const today = dayjs();
-    const deliveryDate = today.add(
-      deliveryOption.deliveryDays,
-      'days'
-    );
-    const dateString = deliveryDate.format('dddd, MMMM D');
+    const dateString = calculateDeliveryDate(deliveryOption);
   
 
   cartProductHTML += `<div class="cart-item-container js-cart-container-${matchingProduct.id}">
@@ -71,12 +65,8 @@ cart.forEach((cartItem) => {
 function deliveryOptionHTML(matchingProduct, cartItem) {
   let html = '';
     deliveryOptions.forEach((deliveryOption) => {
-      const today = dayjs();
-    const deliveryDate = today.add(
-      deliveryOption.deliveryDays,
-      'days'
-    );
-    const dateString = deliveryDate.format('dddd, MMMM D');
+    
+    const dateString = calculateDeliveryDate(deliveryOption);
 
     const priceString = deliveryOption.priceCents === 0
         ? 'FREE'
