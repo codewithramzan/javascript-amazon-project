@@ -3,6 +3,7 @@ import {products,getProduct} from '../../data/products.js';
 import { formatCurrancy } from '../utils/money.js';
 import { deliveryOptions, getDeliveryOption } from '../../data/deliveryOptions.js';
 import { renderPaymentSummary } from './payment-summary.js';
+import { renderCheckoutHeader } from './checkoutHeader.js';
 
 export function renderOrderSummary() {
 let cartProductHTML = '';
@@ -149,8 +150,10 @@ function deliveryOptionHTML(matchingProduct, cartItem) {
     element.addEventListener('click', () => {
     const {productId, deliveryOptionId} = element.dataset;
         updateDeliveryOption(productId, deliveryOptionId);
+        renderCheckoutHeader();
         renderOrderSummary();
         renderPaymentSummary();
+        
     });
     });
 }
