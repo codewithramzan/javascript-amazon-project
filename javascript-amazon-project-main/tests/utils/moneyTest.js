@@ -12,4 +12,8 @@ describe('test suite: formatCurrancy', () => {
         expect(formatCurrancy(1000.5)).toEqual('10.01');
         
     });
+    it('test to rounds to nearest Cents like', () => {
+        expect(formatCurrancy(1000.4)).toEqual('10.00');
+        
+    });
 });
