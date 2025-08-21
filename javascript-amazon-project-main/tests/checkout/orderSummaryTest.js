@@ -1,4 +1,4 @@
-import { renderOrderSummary } from "../../scripts/Checkout/order-summary.js";
+import { renderOrderSummary ,} from "../../scripts/Checkout/order-summary.js";
 import { loadFromStorage, cart, removeItemFromCart } from "../../data/cart.js";
 describe('test suit: renderOrderSummary', () => {
       const  productId1 = "e43638ce-6aa0-4b85-b27f-e1d07eb678c6";
@@ -6,10 +6,19 @@ describe('test suit: renderOrderSummary', () => {
 //this is called hooks-- Hooks is short cut to reuse code
     beforeEach(() => {
       document.querySelector('.js-test-container')
-      .innerHTML = `<div class="js-order-summary"></div>
+      .innerHTML = `
+      <input class="" 
+      <div>
+       <input type="radio" 
+        class="js-delivery-option-input-${productId1}-3"
+        name="delivery-option-${productId1}"
+        value="${'3'}">
+        <div>
+      </div>
+      <div class="js-order-summary"></div>
       <div class="js-checkout-cart-quantity"></div>
+      <div class="js-checkout-header"></div>
       <div class="js-payment-summary"><div>`;
-
       spyOn(localStorage, 'setItem');
       spyOn(localStorage, 'getItem').and.callFake(() => {
       return JSON.stringify([{
@@ -62,7 +71,27 @@ describe('test suit: renderOrderSummary', () => {
       expect(cart[0].productId).toEqual(productId2);
      
   });
+   it('updates the delivery Option', () => {
 
+      document.querySelector(`.js-delivery-option-${productId1}-3`).click();
+      const input = 
+        document.querySelector(`.js-delivery-option-input-${productId1}-3`);
+
+      expect(input).not.toBeNull();
+      input.checked = true;
+      expect(input.checked).toBe(true);
+      expect(cart.length).toEqual(2);
+      expect(cart[0].productId).toBe(productId1);
+      expect(cart[0].deliveryOptionId).toEqual('3');
+      expect(
+      document.querySelector('.js-payment-summary-shipping').innerText
+      ).toEqual('$55.74');
+       expect(
+    document.querySelector('.js-payment-summary-total').innerText
+    ).toEqual('$61.31');
+    expect(localStorage.setItem).toHaveBeenCalledTimes(1);
+    });
+   
   afterEach(() => {
      document.querySelector('.js-test-container')
       .innerHTML = '';

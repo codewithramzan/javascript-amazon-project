@@ -46,7 +46,8 @@ import { getDeliveryOption } from "../../data/deliveryOptions.js";
 
         <div class="payment-summary-row subtotal-row">
         <div>Total before tax:</div>
-            <div class="payment-summary-money">
+            <div class="payment-summary-money
+            js-payment-summary-shipping">
             $${formatCurrancy(totalBeforeTaxCents)}
             </div>
         </div>
@@ -60,7 +61,8 @@ import { getDeliveryOption } from "../../data/deliveryOptions.js";
 
         <div class="payment-summary-row total-row">
         <div>Order total:</div>
-        <div class="payment-summary-money">
+        <div class="payment-summary-money
+        js-payment-summary-total">
         $${formatCurrancy(totalOrderCents)}
         </div>
         </div>
