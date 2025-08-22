@@ -32,14 +32,16 @@ import { getDeliveryOption } from "../../data/deliveryOptions.js";
         
         <div class="payment-summary-row">
         <div class="payment-summary-item">items(${cartQuantity}):</div>
-        <div class="payment-summary-money">
+        <div class="payment-summary-money
+        js-payment-summary-money">
         $${formatCurrancy(productPriceCents)}
         </div>
         </div>
 
         <div class="payment-summary-row">
         <div>Shipping &amp; handling:</div>
-        <div class="payment-summary-money">
+        <div class="payment-summary-money
+        js-payment-summary-money-shipping">
         $${formatCurrancy(ShippingPriceCents)}
         </div>
         </div>
@@ -54,7 +56,8 @@ import { getDeliveryOption } from "../../data/deliveryOptions.js";
 
         <div class="payment-summary-row">
         <div>Estimated tax (10%):</div>
-        <div class="payment-summary-money">
+        <div class="payment-summary-money
+        js-payment-summary-tax">
         $${formatCurrancy(taxCents)}
         </div>
         </div>
@@ -62,7 +65,8 @@ import { getDeliveryOption } from "../../data/deliveryOptions.js";
         <div class="payment-summary-row total-row">
         <div>Order total:</div>
         <div class="payment-summary-money
-        js-payment-summary-total">
+        js-payment-summary-total
+        js-paymentSummary-total">
         $${formatCurrancy(totalOrderCents)}
         </div>
         </div>
