@@ -35,4 +35,7 @@ describe('test suits: renderPaymentSummary', () => {
         ).toEqual(1);
         
     });
+    afterEach(() => {
+        document.querySelector('.js-test-container').innerHTML = '';
+    });
 });
