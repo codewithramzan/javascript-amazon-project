@@ -32,7 +32,7 @@ cart.forEach((cartItem) => {
             ${matchingProduct.name}
         </div>
         <div class="product-price">
-            $${formatCurrancy(matchingProduct.priceCents)}
+            ${matchingProduct.getPrice()}
         </div>
         </div>
         <div class="product-quantity js-product-quantity-${matchingProduct.id}">
