@@ -47,6 +47,22 @@ export function getProduct(productId) {
   }
  }
 
+
+//  const date = new Date();
+// console.log(date)
+// console.log(date.toLocaleTimeString())
+// function logThis() {
+//   console.log(this)
+// }
+// logThis.call('pas')
+
+// const object1 = {
+//   This: 'hello',
+//   Method: () => {
+//     console.log(this)
+//   }
+// }
+// object1.Method();
  
 export const products = [
   {
@@ -729,3 +745,6 @@ export const products = [
   }
   return new Product(productDetails);
 });
+
+
+
