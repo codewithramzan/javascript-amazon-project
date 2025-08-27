@@ -1,5 +1,5 @@
 import { renderPaymentSummary } from "../../scripts/Checkout/payment-summary.js";
-import { cart, loadFromStorage } from "../../data/cart.js";
+import { cart} from "../../data/cart-class.js";
 describe('test suits: renderPaymentSummary', () => {
     const productId1 = 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6';
     beforeEach(() => {
@@ -14,7 +14,7 @@ describe('test suits: renderPaymentSummary', () => {
                 deliveryOptionId: '1'
             }]);
         });
-        loadFromStorage();
+        cart.loadFromStorage();
         renderPaymentSummary();
     });
     it('display payment summary', () => {

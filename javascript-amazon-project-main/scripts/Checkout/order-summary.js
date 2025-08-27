@@ -1,4 +1,4 @@
-import {cart, removeItemFromCart, updateCartCheckout, updateQuantity, updateDeliveryOption} from '../../data/cart.js';
+import {cart} from '../../data/cart-class.js';
 import {products,getProduct} from '../../data/products.js';
 import { formatCurrancy } from '../utils/money.js';
 import { deliveryOptions, getDeliveryOption, calculateDeliveryDate } from '../../data/deliveryOptions.js';
@@ -7,7 +7,7 @@ import { renderCheckoutHeader } from './checkoutHeader.js';
 
 export function renderOrderSummary() {
 let cartProductHTML = '';
-cart.forEach((cartItem) => {
+cart.cartItems.forEach((cartItem) => {
     const productId = cartItem.productId;
     const matchingProduct = getProduct(productId);
     
@@ -109,15 +109,15 @@ function deliveryOptionHTML(matchingProduct, cartItem) {
     .forEach((link) => {
     link.addEventListener('click', () => {
         const productId = link.dataset.productId;
-        removeItemFromCart(productId);
+        cart.removeItemFromCart(productId);
         const container = document.querySelector(`.js-cart-container-${productId}`);
         container.remove();
         renderPaymentSummary();
-        updateCartCheckout();
+        cart.updateCartCheckout();
         
     });
     });
-  updateCartCheckout();
+  cart.updateCartCheckout();
   document.querySelectorAll('.js-update-link')
   .forEach((link) => {
     link.addEventListener('click', () => {
@@ -139,7 +139,7 @@ function deliveryOptionHTML(matchingProduct, cartItem) {
        document.querySelector(`.js-quantity-input-${productId}`);
       const newQuantity = Number(quantityInput.value);
       if (Number(quantityInput.value) >= 0 && Number(quantityInput.value) < 1000) {
-        updateQuantity(productId, newQuantity);
+        cart.updateQuantity(productId, newQuantity);
       }
       renderPaymentSummary();
     });
@@ -149,7 +149,7 @@ function deliveryOptionHTML(matchingProduct, cartItem) {
     .forEach((element) => {
     element.addEventListener('click', () => {
     const {productId, deliveryOptionId} = element.dataset;
-        updateDeliveryOption(productId, deliveryOptionId);
+        cart.updateDeliveryOption(productId, deliveryOptionId);
         renderCheckoutHeader();
         renderOrderSummary();
         renderPaymentSummary();

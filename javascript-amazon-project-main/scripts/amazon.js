@@ -1,4 +1,4 @@
-import {cart, addToCart, updateCartQuantity} from "../data/cart.js";
+import {cart} from "../data/cart-class.js";
 import { products } from "../data/products.js";
 import { formatCurrancy } from "./utils/money.js";
 
@@ -56,16 +56,16 @@ products.forEach((product) => {
 });
 document.querySelector(".js-products-grid").innerHTML = productHTML;
 
-updateCartQuantity();
+cart.updateCartQuantity();
 document.querySelectorAll('.js-add-to-cart')
 .forEach((button) => {
   button.addEventListener('click', () => {
     const productId = button.dataset.productId;
       //call function addtocart()
-      addToCart(productId);
+      cart.addToCart(productId);
       
       // TO update cart call updatecartquanity()
-       updateCartQuantity();
+       cart.updateCartQuantity();
       
     // code for displaying Added msg when we click on add to cart button
      const addedMsg = document.querySelector(`.js-added-cart-msg-${productId}`);
